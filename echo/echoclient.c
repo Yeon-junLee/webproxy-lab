@@ -12,10 +12,11 @@ int main(int argc, char **argv) {           // argc : 입력받은 인자의 수
     host = argv[1];                 // 전달받은 두번째 인자를 host에
     port = argv[2];                 // 세번째 인자를 port에 저장
 
-    clientfd = Open_clientfd(host, port);           // 소켓 인터페이스 핸들링을 도와주는 Open_clientfd 함수를 호출하여 서버와 연결하고,
-                                                    // 리턴 받은 소켓 식별자를 clientfd에 저장
-    Rio_readinitb(&rio, clientfd);                  // rio 구조체를 초기화하고,
-                                                    // rio를 통해 파일 디스크립터 clientfd에 대한 일기 작업을 수행할 수 있도록 설정
+    clientfd = Open_clientfd(host, port);       // 소켓 인터페이스 핸들링을 도와주는 Open_clientfd 함수를 호출하여 서버와 연결하고,
+                                                // 리턴 받은 소켓 식별자를 clientfd에 저장
+                                                // Open_clientfd : client에서 getaddrinfo로 소켓 정보 생성, socket으로 소켓 생성, connect로 host와 port로 서버와 연결하는 wrapping 함수
+    Rio_readinitb(&rio, clientfd);              // rio 구조체를 초기화하고,
+                                                // rio를 통해 파일 디스크립터 clientfd에 대한 일기 작업을 수행할 수 있도록 설정
 
     while(Fgets(buf, MAXLINE, stdin) != NULL) {                 // 반복하여 유저에게서 받은 입력을 buf에 저장, 입력이 끝나거나 오류가 발생하면 반복문 종료
         Rio_writen(clientfd, buf, strlen(buf));                 // 파일 디스크립터를 통해 buf에 저장된 데이터를 서버로 전송
