@@ -7,16 +7,18 @@
 int main(void) {
   char *buf, *p;
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
-  int n1=0, n2=0;
+  int n1 = 0, n2 = 0;
 
   /* Extract the two arguments */
   if ((buf = getenv("QUERY_STRING")) != NULL) {
-    p = strchr(buf, ’&’);
-    *p = ’\0’;
-    strcpy(arg1, buf);
-    strcpy(arg2, p+1);
-    n1 = atoi(arg1);
-    n2 = atoi(arg2);
+    p = strchr(buf, '&');
+    *p = '\0';
+    strcpy(arg1, buf);                    // arg1 == "n1=숫자"
+    strcpy(arg2, p + 1);                  // arg2 == "n2=숫자"
+    char* num1 = strchr(arg1, '=') + 1;   // num1을 arg1에서 = 다음 문자를 가리키도록
+    char* num2 = strchr(arg2, '=') + 1;   // num2를 arg2에서 = 다음 문자를 가리키도록
+    n1 = atoi(num1);
+    n2 = atoi(num2);
   }
 
   /* Make the response body */

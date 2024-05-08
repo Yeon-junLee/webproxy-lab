@@ -1,7 +1,26 @@
+<meta charset="utf-8">
 <html>
-<head><title>test</title></head>
+<head><title>Tiny Tiny Server</title></head>
 <body> 
-<img align="middle" src="godzilla.gif">
-Dave O'Hallaron
+<div>
+    <img align="middle" src="godzilla.gif">
+    Dave O'Hallaron
+</div>
+<div>
+    <video muted autoplay loop>
+        <source src="mollu.mp4" type="video/mp4">
+    </video>
+    <h1>몰?루</h1>
+</div>
+<div>
+    Adder Function!
+    <form action="./cgi-bin/adder" method="GET">
+        <label for="num1">첫 번째 숫자 : </label>
+        <input type="number" id="n1" name="n1"><br><br>           <!-- 11.10.A -->  
+        <label for="num2">두 번째 숫자 : </label>
+        <input type="number" id="n2" name="n2"><br><br>           <!-- 11.10.A -->
+        <input type="submit" value="덧셈 계산">
+    </form>
+</div>
 </body>
 </html>
